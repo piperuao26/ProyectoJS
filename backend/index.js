@@ -8,8 +8,8 @@ app.use(cors());
 app.use(express.json());
 
 const db = new sqlite3.Database("./database.db", (err) => {
-  if (err) console.error("❌ Error al conectar DB:", err.message);
-  else console.log("✅ Conectado a SQLite.");
+  if (err) console.error("Error al conectar DB:", err.message);
+  else console.log("Conectado a SQLite.");
 });
 
 // Tablas
@@ -58,7 +58,7 @@ function generatePassword(length = 16) {
 
 // Test
 app.get("/", (req, res) => {
-  res.json({ message: "Backend funcionando 🚀" });
+  res.json({ message: "Backend funcionando" });
 });
 
 // Obtener empleados
@@ -149,4 +149,4 @@ app.get("/credentials", (req, res) => {
 });
 
 const PORT = 4000;
-app.listen(PORT, () => console.log(`✅ Servidor en http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Servidor en http://localhost:${PORT}`));

@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+## Software Service Desk - Prueba Tecnica 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es una aplicacion *FUll Stack* para la gestion de empleados, credenciales y equipos/roles dentro de una organización 
 
-## Available Scripts
+## Tecnologias usadas
+- ## **Frontend:** React.js
+- ## **Backend:** Node.js con Express.js
+- ## **Base de datos:** SQLite3
 
-In the project directory, you can run:
+## Estructura del proyecto:
+/ProyectoJS
+ /backend
+    /index.js # Manejo de la funcionalidad del proyecto usando Crypto para las tokens aleatorias y express.js
+    /database.db # Base de datos del proyecto
+ /frontend
+    /src
+        /App.js # Gestion de empleados y credenciales
+        /Teams.js # Gestion de equipos y roles
 
-### `npm start`
+## Instalacion y configuracion
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 1. Clonar el repositorio
+```bash
+git clone https://github.com/piperuao26/ProyectoJS.git
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+cd ProjectoJS
 
-### `npm test`
+cd backend
+npm install
+npm index.js
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## El backend corre en http://localhost:4000
 
-### `npm run build`
+cd ..
+cd frontend
+npm install
+npm start
+```
+##  Endpoints principales
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ## GET/employees - Lista todos sus empleados
+- ## POST/employees - Crea sus empleados y sus credenciales aleatorias
+- ## GET/credentials - Lista credenciales corporativas generadas
+- ## GET/Teams - Lista empleados con equipos y roles
+- ## POST/Teams - Asigna un rol y equipo a un empleado
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Manual de usuario 
 
-### `npm run eject`
+- 1. Registrar empleado
+    - Ir a la pestaña *Empleados*
+    - Completar el formulario (nombre, apellido, ciudad, fecha de nacimiento, email personal)
+    - Presionar Registrar
+    - Automaticamente genera su correo corporativo y contraseña en la seleccion de credenciales
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 2. Ver credenciales
+    - En la seccion de credenciales generadas abajo del perfil creado del empleado apareceran el email corporativo y la contraseña automaticamente generada
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 3. Asignar equipo y rol
+    - Cambiar a la pestaña *Equipos*
+    - Seleccionar empleado existente 
+    - Escoger el equipo (TI, Gerencia o RRHH)
+    - Escribir el rol (ejempo: Desarrollador)
+    - Presionar asignar
+    - El sistema mostrara automaticamente el lider del equipo y el equipo al cual acaba de ser registrado el empleado
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## UX / UI
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- El diseño es *minimalista y funcional*, con navegacion clara y simple entre *empleados* y *equipo*
+- Uso de tablas para mantener la informacion legible y actualizada 
+- Formularios simples con validacion minima
+- Experiencia pensada para el uso interno de la empresa 
 
-## Learn More
+## Mejoras futuras
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Autenticacion y permisos por usuario
+- Validaciones mas robustas en el frontend
+- Estilos con Tailwind o Material UI para una mejor UI
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+erDiagram
+    EMPLOYEES {
+        int id PK
+        string firstName
+        string lastName
+        string city
+        date birthDate
+        string personalEmail
+    }
 
-### Analyzing the Bundle Size
+    CREDENTIALS {
+        int id PK
+        int employeeId FK
+        string corporateEmail
+        string password
+    }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    TEAMS {
+        int id PK
+        int employeeId FK
+        string teamName
+        string role
+        string leader
+    }
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    EMPLOYEES ||--|| CREDENTIALS : has
+    EMPLOYEES ||--|| TEAMS : belongs_to

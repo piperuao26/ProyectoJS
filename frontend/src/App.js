@@ -57,16 +57,16 @@ function App() {
     <div style={{ padding: "20px" }}>
       {/* Barra de navegación */}
       <nav style={{ marginBottom: "20px" }}>
-        <button onClick={() => setPage("employees")}>👤 Empleados</button>
+        <button onClick={() => setPage("employees")}> Empleados</button>
         <button onClick={() => setPage("teams")} style={{ marginLeft: "10px" }}>
-          👥 Equipos
+           Equipos
         </button>
       </nav>
 
       {/* Página de empleados */}
       {page === "employees" && (
         <>
-          <h2>👤 Registro de Empleados</h2>
+          <h2> Registro de Empleados</h2>
           <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
             <input
               type="text"
@@ -106,7 +106,7 @@ function App() {
             <button type="submit">Registrar</button>
           </form>
 
-          <h3>📋 Lista de Empleados</h3>
+          <h3> Lista de Empleados</h3>
           <table
             border="1"
             width="100%"
@@ -136,7 +136,7 @@ function App() {
             </tbody>
           </table>
 
-          <h3>🔑 Credenciales Generadas</h3>
+          <h3> Credenciales Generadas</h3>
           <table border="1" width="100%" style={{ borderCollapse: "collapse" }}>
             <thead>
               <tr>

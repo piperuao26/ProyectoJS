@@ -82,7 +82,7 @@ function Teams() {
         </button>
       </form>
 
-      <h3>📋 Lista de Equipos y Roles</h3>
+      <h3> Lista de Equipos y Roles</h3>
       <table border="1" width="100%" style={{ borderCollapse: "collapse" }}>
         <thead>
           <tr>
