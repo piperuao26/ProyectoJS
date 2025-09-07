@@ -37,6 +37,20 @@ db.serialize(() => {
   `);
 });
 
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS teams (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      employeeId INTEGER,
+      team TEXT,
+      role TEXT,
+      leader TEXT,
+      FOREIGN KEY (employeeId) REFERENCES employees(id)
+    )
+  `);
+});
+
+
 // Generar password aleatoria localmente
 function generatePassword(length = 16) {
   return crypto.randomBytes(Math.ceil(length / 2)).toString("hex").slice(0, length);
@@ -59,6 +73,39 @@ app.get("/employees", (req, res) => {
 app.post("/employees", (req, res) => {
   const { firstName, lastName, city, birthDate, email } = req.body;
   const registrationDate = new Date().toISOString().split("T")[0];
+
+  app.post("/teams", (req, res) => {
+  const { employeeId, team, role } = req.body;
+
+  // Asignar líder fijo según equipo
+  let leader = "N/A";
+  if (team === "TI") leader = "LiderTI";
+  else if (team === "Gerencia") leader = "LiderGerencia";
+  else if (team === "RRHH") leader = "LiderRRHH";
+
+  db.run(
+    `INSERT INTO teams (employeeId, team, role, leader) VALUES (?, ?, ?, ?)`,
+    [employeeId, team, role, leader],
+    function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ teamId: this.lastID, employeeId, team, role, leader });
+    }
+  );
+});
+
+app.get("/teams", (req, res) => {
+  db.all(
+    `SELECT employees.firstName, employees.lastName, teams.team, teams.role, teams.leader
+     FROM teams
+     JOIN employees ON employees.id = teams.employeeId`,
+    [],
+    (err, rows) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(rows);
+    }
+  );
+});
+
 
   db.run(
     `INSERT INTO employees (firstName, lastName, city, birthDate, email, registrationDate)
