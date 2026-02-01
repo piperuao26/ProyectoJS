@@ -120,7 +120,7 @@ app.get("/teams", (req, res) => {
       if (err) return res.status(500).json({ error: err.message });
 
       const employeeId = this.lastID;
-      const corpEmail = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@kiwibot.com`.replace(/\s+/g, "");
+      const corpEmail = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@gmail.com`.replace(/\s+/g, "");
       const password = generatePassword(16);
 
       db.run(
