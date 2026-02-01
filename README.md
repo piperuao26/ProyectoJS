@@ -1,4 +1,4 @@
-## Software Service Desk - Prueba Tecnica 
+## Devops 
 
 Este proyecto es una aplicacion *FUll Stack* para la gestion de empleados, credenciales y equipos/roles dentro de una organización 
 
