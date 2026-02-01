@@ -52,7 +52,7 @@ db.serialize(() => {
 
 // Health check (para Load Balancer / ECS)
 app.get("/health", (req, res) => {
-  res.status(200).send("docker funciona correctamente");
+  res.status(200).send("healthy");
 });
 
 

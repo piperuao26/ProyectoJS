@@ -1,11 +1,15 @@
-## Devops TEST ACTIONS 1
+## Prueba Técnica – Sistema de Gestión de Empleados
 
-Este proyecto es una aplicacion *FUll Stack* para la gestion de empleados, credenciales y equipos/roles dentro de una organización 
+Este proyecto corresponde a una prueba técnica de desarrollo, cuyo objetivo es construir una aplicación básica para la gestión de empleados, credenciales y equipos, aplicando buenas prácticas de desarrollo y nociones de DevOps.
+ 
 
 ## Tecnologias usadas
 - ## **Frontend:** React.js
 - ## **Backend:** Node.js con Express.js
 - ## **Base de datos:** SQLite3
+- ## **Docker **
+- ## **AWS (ECR y ECS Fargate) **
+- ## **Github Actions CI **
 
 ## Estructura del proyecto:
 /ProyectoJS
@@ -16,6 +20,16 @@ Este proyecto es una aplicacion *FUll Stack* para la gestion de empleados, crede
     /src
         /App.js # Gestion de empleados y credenciales
         /Teams.js # Gestion de equipos y roles
+
+
+## Arquitectura General
+
+- El backend está dockerizado
+- La imagen Docker se almacena en Amazon ECR
+- La aplicación está preparada para ejecutarse en ECS Fargate
+- Se incluye un endpoint de health check para monitoreo
+
+
 
 ## Instalacion y configuracion
 
@@ -71,9 +85,21 @@ npm start
 - Formularios simples con validacion minima
 - Experiencia pensada para el uso interno de la empresa 
 
+## Estado del Proyecto
+
+- El proyecto cumple con los requerimientos principales de la prueba técnica.
+
+- Algunas decisiones, como no exponer aún el servicio mediante un Load Balancer, se tomaron para priorizar estabilidad, claridad y facilidad de entrega, dejando la arquitectura preparada para futuras extensiones.
+
+
 ## Mejoras futuras
 
 - Autenticacion y permisos por usuario
 - Validaciones mas robustas en el frontend
 - Estilos con Tailwind o Material UI para una mejor UI
+- Despliegue completo mediante ECS Service y Application Load Balancer
+- Manejo de variables de entorno desde AWS
+- Infraestructura como código (Terraform)
+- Pipeline de CD automatizado
+
 
