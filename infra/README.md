@@ -1,36 +1,35 @@
-# Infraestructura y DevOps
+# Infrastructure and DevOps
 
-Este documento describe la configuración de infraestructura, decisiones técnicas y procesos DevOps utilizados en el proyecto.
+This document describes the infrastructure setup, technical decisions, and DevOps processes used in the project.
 
 ## Docker
 
-- El backend está dockerizado utilizando Node.js 20 Alpine
-- Se expone el puerto 4000
-- Se incluye un endpoint `/health` para validaciones de estado
+- The backend is containerized using Node.js 20 Alpine
+- Port 4000 is exposed
+- A `/health` endpoint is included for health checks
 
 ## AWS
 
-Servicios utilizados:
+Services used:
 
-- Amazon ECR: almacenamiento de imágenes Docker
-- Amazon ECS Fargate: ejecución de contenedores sin gestión de servidores
-- IAM: manejo de permisos y usuarios para CLI
-- CloudWatch Logs: logging de contenedores
+- Amazon ECR: stores Docker images
+- Amazon ECS Fargate: runs containers without server management
+- IAM: manages permissions and CLI access
+- CloudWatch Logs: container logging
 
-## Seguridad
+## Security
 
-- No se utiliza la cuenta root para automatización
-- Se creó un usuario IAM dedicado para CLI
-- Se aplicó el principio de menor privilegio
-- Las credenciales no se almacenan en el repositorio
+- The root account is not used for automation
+- A dedicated IAM user was created for CLI access
+- The principle of least privilege was applied
+- Credentials are not stored in the repository
 
-## Integración Continua (CI)
+## Continuous Integration (CI)
 
-Se implementó un pipeline de GitHub Actions que:
+A GitHub Actions pipeline was implemented that:
 
-- Se ejecuta en cada push
-- Instala dependencias del backend
-- Valida la estructura del proyecto
+- Runs on every push
+- Installs backend dependencies
+- Validates the project structure
 
-El objetivo es detectar errores tempranos y garantizar estabilidad antes del despliegue.
-
+The goal is to detect errors early and ensure stability before deployment.

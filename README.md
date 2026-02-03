@@ -1,49 +1,48 @@
-## Prueba Técnica – Sistema de Gestión de Empleados
+# Technical Test – Employee Management System
 
-Este proyecto corresponde a una prueba técnica de desarrollo, cuyo objetivo es construir una aplicación básica para la gestión de empleados, credenciales y equipos, aplicando buenas prácticas de desarrollo y nociones de DevOps.
- 
+This project is part of a technical development test. The goal is to build a basic application for managing employees, credentials, and teams, following good development practices and basic DevOps concepts.
 
-## Tecnologias usadas
-- ## **Frontend:** React.js
-- ## **Backend:** Node.js con Express.js
-- ## **Base de datos:** SQLite3
-- ## **Docker **
-- ## **AWS (ECR y ECS Fargate) **
-- ## **Github Actions CI **
+## Technologies Used
 
-## Estructura del proyecto:
+- **Frontend:** React.js
+- **Backend:** Node.js with Express.js
+- **Database:** SQLite3
+- **Docker**
+- **AWS (ECR and ECS Fargate)**
+- **GitHub Actions (CI)**
+
+## Project Structure
+
 /ProyectoJS
  /backend
-    /index.js # Manejo de la funcionalidad del proyecto usando Crypto para las tokens aleatorias y express.js
-    /database.db # Base de datos del proyecto
+    /index.js # Project logic using Express and Crypto for random tokens
+    /database.db # Project database
  /frontend
     /src
-        /App.js # Gestion de empleados y credenciales
-        /Teams.js # Gestion de equipos y roles
+        /App.js # Employee and credentials management
+        /Teams.js # Team and role management
 
+## General Architecture
 
-## Arquitectura General
+- The backend is dockerized
+- The Docker image is stored in Amazon ECR
+- The application is ready to run on ECS Fargate
+- A health check endpoint is included for monitoring
 
-- El backend está dockerizado
-- La imagen Docker se almacena en Amazon ECR
-- La aplicación está preparada para ejecutarse en ECS Fargate
-- Se incluye un endpoint de health check para monitoreo
+## Installation and Setup
 
+### 1. Clone the repository
 
-
-## Instalacion y configuracion
-
-## 1. Clonar el repositorio
 ```bash
 git clone https://github.com/piperuao26/ProyectoJS.git
-
-cd ProjectoJS
+cd ProyectoJS
 
 cd backend
 npm install
-npm index.js
+node index.js
 
-## El backend corre en http://localhost:4000
+
+## The backend runs at http://localhost:4000
 
 cd ..
 cd frontend
@@ -52,54 +51,54 @@ npm start
 ```
 ##  Endpoints principales
 
-- ## GET/employees - Lista todos sus empleados
-- ## POST/employees - Crea sus empleados y sus credenciales aleatorias
-- ## GET/credentials - Lista credenciales corporativas generadas
-- ## GET/Teams - Lista empleados con equipos y roles
-- ## POST/Teams - Asigna un rol y equipo a un empleado
+- ## GET/employees - List all employees
+- ## POST/employees - Create employees with random credentials
+- ## GET/credentials - List generated corporate credentials
+- ## GET/Teams - List employees with assigned teams and roles
+- ## POST/Teams - Assign a team and role to an employee
 
 
-## Manual de usuario 
+## User guide
 
-- 1. Registrar empleado
-    - Ir a la pestaña *Empleados*
-    - Completar el formulario (nombre, apellido, ciudad, fecha de nacimiento, email personal)
-    - Presionar Registrar
-    - Automaticamente genera su correo corporativo y contraseña en la seleccion de credenciales
+- 1. Register an Employee
+    - Go to the Employees tab
+    - Fill in the form (first name, last name, city, birth date, personal email)
+    - Click Register
+    - Corporate email and password are generated automatically
 
-- 2. Ver credenciales
-    - En la seccion de credenciales generadas abajo del perfil creado del empleado apareceran el email corporativo y la contraseña automaticamente generada
+- 2. View Credentials
+    - Generated corporate email and password appear under the employee profile
 
-- 3. Asignar equipo y rol
-    - Cambiar a la pestaña *Equipos*
-    - Seleccionar empleado existente 
-    - Escoger el equipo (TI, Gerencia o RRHH)
-    - Escribir el rol (ejempo: Desarrollador)
-    - Presionar asignar
-    - El sistema mostrara automaticamente el lider del equipo y el equipo al cual acaba de ser registrado el empleado
+- 3. Assign Team and Role
+    - Go to the Teams tab
+    - Select an existing employee
+    - Choose a team (IT, Management, or HR)
+    - Enter a role (example: Developer)
+    - Click Assign
+    - The system automatically shows the team leader and assigned team
 
 ## UX / UI
 
-- El diseño es *minimalista y funcional*, con navegacion clara y simple entre *empleados* y *equipo*
-- Uso de tablas para mantener la informacion legible y actualizada 
-- Formularios simples con validacion minima
-- Experiencia pensada para el uso interno de la empresa 
+- Minimalist and functional design
+- Clear navigation between Employees and Teams
+- Tables are used to keep information readable and organized
+- Simple forms with basic validation
+- Designed for internal company use
 
-## Estado del Proyecto
+## Project Status
 
-- El proyecto cumple con los requerimientos principales de la prueba técnica.
+- The project meets the main requirements of the technical test
+- Some decisions, such as not exposing the service through a Load Balancer, were made to prioritize clarity, stability, and ease of delivery, while keeping the architecture ready for future improvements
 
-- Algunas decisiones, como no exponer aún el servicio mediante un Load Balancer, se tomaron para priorizar estabilidad, claridad y facilidad de entrega, dejando la arquitectura preparada para futuras extensiones.
 
+## Future Improvements
 
-## Mejoras futuras
-
-- Autenticacion y permisos por usuario
-- Validaciones mas robustas en el frontend
-- Estilos con Tailwind o Material UI para una mejor UI
-- Despliegue completo mediante ECS Service y Application Load Balancer
-- Manejo de variables de entorno desde AWS
-- Infraestructura como código (Terraform)
-- Pipeline de CD automatizado
+- User authentication and authorization
+- Stronger frontend validations
+- Improved UI using Tailwind or Material UI
+- Full deployment using ECS Service and Application Load Balancer
+- Environment variable management from AWS
+- Infrastructure as Code (Terraform)
+- Automated CD pipeline
 
 
